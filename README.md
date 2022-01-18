@@ -47,3 +47,4 @@ numpy:          C:/Users/pcname/AppData/Local/r-miniconda/envs/r-reticulate/Lib/
 numpy_version:  1.18.1
 ```
 
+Download `SERDA runner.R`, edit `data_file = "filelocation.xlsx"` and run all the script lines.
