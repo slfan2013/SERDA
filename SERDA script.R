@@ -15,7 +15,7 @@ seed = 42
 
 source("https://raw.githubusercontent.com/slfan2013/rcodes/master/SERDA%20utils.R")
 # scatter plot
-scatter_plot = F
+scatter_plot = TRUE
 source("https://raw.githubusercontent.com/slfan2013/rcodes/master/read_data.R")
 
 
@@ -156,18 +156,7 @@ patience = 50; layer_units = c(1400); batch_size = 128; epochs = 2000; verbose =
 
 
 
-layer_units_options = expand.grid(
-  # x = ceiling(seq(min(nrow(e),400), min(nrow(e)*3,1600), length.out = 10)), 
-  x  = round(nrow(f)*c(seq(0.2, 2.2, by = 0.2))),
-  activation_function = c("elu"), 
-  drop_rates = c(3:6)/100,
-  # drop_rates = 5/100, 
-  patience = c(25), many_training = c(TRUE
-                                      # ,FALSE
-  ),many_training_n = c(500), noise_weight = 1, use_qc_sd_when_final_correct = c(T
-                                                                                 # ,F
-  )
-)
+
 
 
 e_norms = list()
@@ -476,6 +465,7 @@ for(l in 1:nrow(layer_units_options)){
   
   for(j in 1:ncol(x_sample_normalize)){
     x_sample_normalize[,j] = (x_sample_normalize[,j]* x_sample_scale_sd[j] + x_sample_scale_mean[j]) - (x_sample_predict[,j] - mean(x_sample_predict[,j]))
+  }
   # normalize batch effect
   x_sample_normalize = t(rm_batch(t(x_sample_normalize), p$batch[sample_index]))
   
@@ -579,6 +569,8 @@ for(l in 1:nrow(layer_units_options)){
          # col = colors
     )
   }
+  
+  
   e_none =  transform(e, forward = FALSE, lambda = lambda)[[1]]
   for(j in 1:nrow(e_norm)){
     if(!any(is.na(e_norm[j,]))){
@@ -682,7 +674,7 @@ for(l in 1:nrow(layer_units_options)){
     
   }
 }
-}
+
 
 
 
