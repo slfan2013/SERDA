@@ -50,3 +50,5 @@ numpy_version:  1.18.1
 Download `SERDA runner.R`. Open it and edit `data_file = "filelocation.xlsx"` and run all the script lines.
 
 An example dataset can be downloaded [here](https://github.com/slfan2013/Shiny-SERRF/raw/master/SERRF%20example%20dataset%20-%20with%20validate.xlsx).
+
+If you have any questions, feel free to contact me at slfan@ucdavis.edu
